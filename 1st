@@ -1,0 +1,83 @@
+def populate_dict(d):
+    # Populate the dictionary with predefined keys and values
+    d["apple"] = "fruit"
+    d["carrot"] = "vegetable"
+    d["chicken"] = "meat"
+    print("Dictionary populated with initial values.")
+    return d
+
+def display_dict(d):
+    # Display the contents of the dictionary
+    print("Dictionary contents:")
+    for key, value in d.items():
+        print(f"{key}: {value}")
+
+def remove_key(d):
+    # Remove a specified key from the dictionary
+    key = input("Enter the key to remove: ")
+    if key in d:
+        del d[key]
+        print(f"Key '{key}' removed.")
+    else:
+        print(f"Key '{key}' not found.")
+    return d
+
+def add_key_value(d):
+    # Add a new key-value pair to the dictionary
+    key = input("Enter the new key: ")
+    value = input("Enter the value: ")
+    d[key] = value
+    print(f"Key-value pair '{key}: {value}' added.")
+    return d
+
+def append_value(d):
+    # Append a value to an existing key
+    key = input("Enter the key to append a value to: ")
+    value = input("Enter the value to append: ")
+    if key in d:
+        d[key] = f"{d[key]}, {value}"
+        print(f"Value '{value}' appended to key '{key}'.")
+    else:
+        print(f"Key '{key}' not found.")
+    return d
+
+def sort_keys(d):
+    # Sort the keys in the dictionary
+    sorted_keys = sorted(d.keys())
+    sorted_dict = {key: d[key] for key in sorted_keys}
+    print("Dictionary keys sorted.")
+    return sorted_dict
+
+def main():
+    dictionary = {}
+    options = {
+        'a': populate_dict,
+        'b': display_dict,
+        'c': remove_key,
+        'd': add_key_value,
+        'e': append_value,
+        'f': sort_keys,
+    }
+
+    while True:
+        print("\nOptions:")
+        print("a. Populate the Dictionary")
+        print("b. Display Dictionary Contents")
+        print("c. Remove a Key")
+        print("d. Add a New Key and Value")
+        print("e. Add a Value to an Existing Key")
+        print("f. Sort the Keys")
+        print("q. Quit")
+
+        choice = input("Select an option: ").lower()
+
+        if choice == 'q':
+            print("Exiting the program.")
+            break
+        elif choice in options:
+            dictionary = options[choice](dictionary)
+        else:
+            print("Invalid option. Please try again.")
+
+if __name__ == "__main__":
+    main()
